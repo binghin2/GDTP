@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아카이브</title>
+</head>
+<body>
+    <h1>아카이브</h1>
+    {% for item in records %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+            <p><strong>시간:</strong> {{ item.timestamp }}</p>
+            {% if item.type == 'text' %}
+                <p><strong>입력 텍스트:</strong> {{ item.text }}</p>
+            {% else %}
+                <p><strong>이미지:</strong> <img src="{{ url_for('static', filename='../uploads/' ~ item.filename) }}" width="200"></p>
+                <p><strong>감정:</strong> {{ item.emotion }}</p>
+                <p><strong>풍경:</strong> {{ item.scene }}</p>
+            {% endif %}
+            <p><strong>추천 음악:</strong> {{ item.music }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>FACEPRINT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        input[type="file"], input[type="text"], button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        .result h2 {
+            margin-top: 0;
+        }
+
+        /* 아카이브 버튼 스타일 */
+        .archive-btn {
+            background-color: #007BFF;
+            margin-bottom: 30px;
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .archive-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎵 FACEPRINT</h1>
+
+    <!-- 아카이브 페이지로 이동하는 버튼 -->
+    <a href="{{ url_for('archive') }}" class="archive-btn">📂 아카이브 확인하기</a>
+
+    <!-- 이미지 업로드 -->
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload Image:</label>
+        <input type="file" name="image">
+        <button type="submit">이미지로 음악 추천 받기</button>
+    </form>
+
+    <!-- 텍스트 입력 -->
+    <form method="POST">
+        <label>Text:</label>
+        <input type="text" name="text" placeholder="예: 기분이 울적해요">
+        <button type="submit">텍스트로 음악 추천 받기</button>
+    </form>
+
+    <!-- 결과 출력 -->
+    {% if emotion or scene %}
+    <div class="result">
+        <h2>🎭 감정 분석 결과: {{ emotion }}</h2>
+        <h2>🌄 풍경 인식 결과: {{ scene }}</h2>
+    </div>
+    {% endif %}
+
+    {% if music %}
+    <div class="result">
+        <h2>🎶 추천 음악:</h2>
+        <p>{{ music|safe }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
