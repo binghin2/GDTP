@@ -21,7 +21,7 @@ UPLOAD_FOLDER = 'uploads'
 ARCHIVE_FILE = 'archive.json'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-API_KEY = "AIzaSyAiUuK3rApGPydl3EP95chnc-kU0DfOXqw"
+API_KEY = ""
 
 # 감정 분석용 모델
 emotion_model = torch.hub.load('pytorch/vision:v0.10.0', 'resnet18', weights='IMAGENET1K_V1')
