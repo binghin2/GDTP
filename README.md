@@ -1,4 +1,4 @@
 # GDTP
 -------
-##Collaborator
-Taehan Kim
+## Collaborator
+### Taehan Kim
